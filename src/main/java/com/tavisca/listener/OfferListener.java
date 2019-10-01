@@ -29,6 +29,7 @@ public class OfferListener {
         try {
             JsonNode jsonNode = mapper.readTree(message);
             Offer offer = prepareOffer(jsonNode);
+            System.out.println("Received Offer From kafka: "+offer);
             offerRepository.saveOffer(offer);
 
         } catch (IOException e) {
