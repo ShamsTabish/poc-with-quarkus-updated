@@ -16,23 +16,16 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class NumberStoreResource {
 
-//    @Inject
-//    @Stream("number")
-//    Publisher<Number> publisher;
+    @Inject
+    private NumberPublisher numberPublisher;
 
     @POST @Path("/{input}")
     public Number publishNumber(@PathParam("input") Integer input) {
         final Number number = new Number(input);
-        NumberPublisher numberPublisher=new NumberPublisher();
-        numberPublisher.publishNumber();
+        numberPublisher.add(number);
         return number;
     }
 
-//    @GET
-//    @Path("/stream")
-//    public Publisher<Number> getPublisherStream() {
-//        return publisher;
-//    }
 
     @GET
     public List<Number> getNumbers() {

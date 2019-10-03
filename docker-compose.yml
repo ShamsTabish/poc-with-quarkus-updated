@@ -15,7 +15,7 @@ services:
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 10.0.75.1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_CREATE_TOPICS: "new-offer:3:1"
+      KAFKA_CREATE_TOPICS: "number:3:1"
     volumes:
       - kafka-volume-mvp:/var/run/docker.sock
 
