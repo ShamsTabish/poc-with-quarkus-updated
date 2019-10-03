@@ -14,8 +14,10 @@ public class NumberListener {
 
     @Merge
     @Incoming("number")
-    public void receiveNumber(Integer number) {
+    public void receiveNumber(Number number) {
+        System.out.println("############################################################");
         System.out.println("Received: "+number);
+        System.out.println("############################################################");
     }
 
 }
