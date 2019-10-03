@@ -20,15 +20,13 @@ public class NumberStoreResource {
 //    @Stream("number")
 //    Publisher<Number> publisher;
 
-
     @POST @Path("/{input}")
     public Number publishNumber(@PathParam("input") Integer input) {
         final Number number = new Number(input);
-        NumberPublisher numberPublisher=new NumberPublisher(number);
+        NumberPublisher numberPublisher=new NumberPublisher();
         numberPublisher.publishNumber();
         return number;
     }
-
 
 //    @GET
 //    @Path("/stream")
