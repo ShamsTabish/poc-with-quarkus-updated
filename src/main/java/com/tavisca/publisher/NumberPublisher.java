@@ -2,6 +2,7 @@ package com.tavisca.publisher;
 
 import com.tavisca.model.Number;
 import io.smallrye.reactive.messaging.annotations.Broadcast;
+import io.smallrye.reactive.messaging.kafka.KafkaMessage;
 import org.eclipse.microprofile.reactive.messaging.Message;
 import org.eclipse.microprofile.reactive.messaging.Outgoing;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ public class NumberPublisher {
     }
 
     @Outgoing("number")
-    public CompletionStage<Message<Number>> publishNumber() {
+    public CompletionStage<KafkaMessage<String, Number>> publishNumber() {
         return CompletableFuture.supplyAsync(() -> {
             Number message;
             try {
@@ -33,7 +34,7 @@ public class NumberPublisher {
                 LOGGER.error("Failed to fetch message from end-point due to {}", e);
                 throw new RuntimeException(e);
             }
-            return Message.of(message);
+            return KafkaMessage.withKeyAndValue("key", message);
         }, executor);
     }
 }

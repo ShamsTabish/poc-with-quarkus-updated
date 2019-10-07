@@ -12,14 +12,13 @@ import java.util.Arrays;
 import java.util.List;
 
 @Path("/number")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 public class NumberStoreResource {
 
     @Inject
     private NumberPublisher numberPublisher;
 
     @POST @Path("/{input}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Number publishNumber(@PathParam("input") Integer input) {
         final Number number = new Number(input);
         numberPublisher.add(number);
